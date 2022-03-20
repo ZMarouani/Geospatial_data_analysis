@@ -10,12 +10,13 @@
 
 # DBTITLE 1,Import pandas ,geopandas and shapely for geometric dataframes 
 import pandas as pd
+import geopandas as gpd
 from geopandas import GeoDataFrame , sjoin
 from shapely.geometry import Point, Polygon
 from shapely import wkt
 import fiona
 
-geopandas.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
+gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 
 
 # COMMAND ----------
@@ -92,11 +93,9 @@ for file_name in affinities_name_path :
 
 display(merge_df)
 
-
-
-
 # COMMAND ----------
 
+# DBTITLE 1,Counting visitors and unique visitor 
 # Creation of group by dataframe 
 merge_df_group = merge_df.groupby(["date","store_name", "store_id"])
 
@@ -148,17 +147,6 @@ gps_geopandas_df.plot(ax=ax , cmap='jet' , edgecolor='black' , column='device_id
 
 # COMMAND ----------
 
-# DBTITLE 1,Visualize GPS data inside Berlin 
-berlin_map.crs = 4326
-ax = berlin_map.plot(color = 'lightgreen' , figsize=(10,10))
-ax.axis("off")
-
-ax.set_title('Visualisation of devices gps data with different color for each device')
-
-gps_geopandas_df.plot(ax=ax , cmap='jet' , edgecolor='black' , column='device_id')
-
-# COMMAND ----------
-
 # DBTITLE 1,Copy Berlin map from S3 bucket to local file system
 # The Berlin map was downloaded from the following website : 
 # https://www.suche-postleitzahl.org/berlin.13f
@@ -167,6 +155,17 @@ gps_geopandas_df.plot(ax=ax , cmap='jet' , edgecolor='black' , column='device_id
 dbutils.fs.cp("s3a://train-data-20221903/Berlin_map_data/plz_5-stellig_berlin.kml", "file:/tmp/plz_5-stellig_berlin.kml", recurse = True)
 berlin_map = gpd.read_file("file:/tmp/plz_5-stellig_berlin.kml", driver='KML')
 
+
+# COMMAND ----------
+
+# DBTITLE 1,Visualize GPS data inside Berlin 
+berlin_map.crs = 4326
+ax = berlin_map.plot(color = 'lightgreen' , figsize=(10,10))
+ax.axis("off")
+
+ax.set_title('Visualisation of devices gps data with different color for each device')
+
+gps_geopandas_df.plot(ax=ax , cmap='jet' , edgecolor='black' , column='device_id')
 
 # COMMAND ----------
 
