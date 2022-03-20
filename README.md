@@ -9,7 +9,9 @@ The python notebooks were exported on three different formats (ipynb , python so
 
 You can check the .HTML version of the notebook in order to see the code with the execution and results . 
 
-To run the script you can upload any of the different formats to your databricks platform and simply execute it (after changing the files paths or simply mounting your own s3 bucket) . The notebook already contains the necessary dependecies that were installed through pip : 
+To run the script you can upload any of the different formats to your databricks platform and simply execute it (after changing the files paths or simply mounting your own s3 bucket) or simply running locally the oython source code version of the notebooks.
+
+The notebook's cluster already contains the necessary dependecies that were installed through pip : 
 %pip install geopandas
 %pip install shapely
 %pip install fsspec
