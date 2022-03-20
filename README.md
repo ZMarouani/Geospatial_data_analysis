@@ -30,12 +30,14 @@ The S3 bucket contains three different data sources:
 
 The S3 bucket had the following structure :
 
-https://s3.console.aws.amazon.com/s3/buckets/train-data-20221903 : 
+https://s3.console.aws.amazon.com/s3/buckets/train-data-20221903 : <br/>
 |-Berlin_map_data/plz_5-stellig_berlin.kml  : .kml file containg berlin map informations for geopandas <br/>
 |- oregon-prod/ : contains jobs logs and meta data <br/>
-|- Results_data/ : seperated in folders with names as 'year-month-day' format  , each folder contains <br/>                                                                                  the results data of the corresponding day . <br/>
+|- Results_data/ : seperated in folders with names as 'year-month-day' format  , each folder contains the results data of the corresponding day . <br/>
 |- sample_data/	: contains sample gps data <br/>
 |- train_data/ : contains gps full data , store polygones and affinity datasets <br/>
+
+The Berlin map was downloaded from  : https://www.suche-postleitzahl.org/berlin.13f
                                                                 
 # Data visualization 
 
