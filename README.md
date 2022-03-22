@@ -55,7 +55,7 @@ So on Sundays the we have the lowest number of visitors or consumers to the stor
 
 ![uniqvisit_All](https://user-images.githubusercontent.com/17991782/159584401-b30eb670-1b4c-4b0e-929e-b73bc5fde517.png)
 
-In the Second visualization , where we have a more detailed view , we see that on the mentioned dates ( 2021-01-01/03/10/17 ) , fast food business (like mcdonalds and Burger king) are an exception to the rule and keep having sales close to there average sales unlike hypermarket and retail business ( like Aldi , Kaufland , Rewe ) 
+In the Second visualization , where we have a more detailed view , we see that on the mentioned dates ( 2021-01-01/03/10/17 ) , fast food business (like mcdonalds and Burger king) are an exception to the rule and keep having unique visitors close to their average unique visitors number unlike hypermarket and retail business ( like Aldi , Kaufland , Rewe ) .
 
 ![uniqvisit_each](https://user-images.githubusercontent.com/17991782/159584411-63e1d20b-5960-4c4e-b4ba-4ecda4017a20.png)
 
