@@ -15,30 +15,26 @@ from geopandas import GeoDataFrame , sjoin
 from shapely.geometry import Point, Polygon
 from shapely import wkt
 import fiona
+import seaborn as sns
 
 gpd.io.file.fiona.drvsupport.supported_drivers['KML'] = 'rw'
 
 
 # COMMAND ----------
 
-# DBTITLE 1,Map Gps data to Points (using sample data) 
-# # Create Points as geometry column
-# gps_pandas_df = pd.read_csv("s3a://train-data-20221903/sample_data/*" , compression='gzip')
-# gps_pandas_df['utc_timestamp'] = pd.to_datetime(gps_pandas_df['utc_timestamp'], unit='ms', utc=True).dt.date
-# gps_pandas_df = gps_pandas_df.rename(columns={"Unnamed: 0": "row_id", "lat": "latitude", "lon" : "longitude", "utc_timestamp":"date"})
-# gps_pandas_df['geometry'] = gps_pandas_df.apply(lambda x : Point(x.longitude , x.latitude) , axis=1)
-
-# # Create geopandas dataframe object 
-# df_crs = { 'init' : 'epsg:4326'}
-# gps_geopandas_df = GeoDataFrame(gps_pandas_df , crs = df_crs, geometry = gps_pandas_df.geometry )
-
-# display(gps_geopandas_df)
-
-# COMMAND ----------
-
 # DBTITLE 1,Map Gps data to Points (using full data) 
-# Create Points as geometry column
-gps_pandas_df = pd.read_csv("s3a://train-data-20221903/train_data/ full_signals/full_data/*" , compression='gzip')
+csv_path = 's3a://train-data-20221903/train_data/ full_signals/full_data/'
+
+csv_dict = dbutils.fs.ls(f'{csv_path}')
+csv_names_path = { fileinfo.name.split('.')[0] : fileinfo.path for fileinfo in csv_dict  }
+li = []
+
+for filename,filepath in csv_names_path.items():
+    df = pd.read_csv(filepath, index_col=None, header=0, compression='gzip')
+    li.append(df)
+
+gps_pandas_df = pd.concat(li, axis=0, ignore_index=True)
+
 gps_pandas_df['utc_timestamp'] = pd.to_datetime(gps_pandas_df['utc_timestamp'], unit='ms', utc=True).dt.date
 gps_pandas_df = gps_pandas_df.rename(columns={"Unnamed: 0": "row_id", "lat": "latitude", "lon" : "longitude", "utc_timestamp":"date"})
 gps_pandas_df['geometry'] = gps_pandas_df.apply(lambda x : Point(x.longitude , x.latitude) , axis=1)
@@ -126,12 +122,12 @@ merge_df_nunique.to_csv(path_or_buf= f'{s3_export_path}/{current_date}/results_d
 
 # COMMAND ----------
 
-# DBTITLE 1,Unique_visits / Place  Pie charts
+# DBTITLE 1,Visualizing unique visits per Date for each store 
 display(merge_df_nunique)
 
 # COMMAND ----------
 
-# DBTITLE 1,Unique_visits / Place  Bar charts
+# DBTITLE 1,Visualizing unique visits per Date for all stores
 display(merge_df_nunique)
 
 # COMMAND ----------
@@ -158,21 +154,26 @@ berlin_map = gpd.read_file("file:/tmp/plz_5-stellig_berlin.kml", driver='KML')
 
 # COMMAND ----------
 
-# DBTITLE 1,Visualize GPS data inside Berlin 
-berlin_map.crs = 4326
-ax = berlin_map.plot(color = 'lightgreen' , figsize=(10,10))
-ax.axis("off")
-
-ax.set_title('Visualisation of devices gps data with different color for each device')
-
-gps_geopandas_df.plot(ax=ax , cmap='jet' , edgecolor='black' , column='device_id')
-
-# COMMAND ----------
-
 # DBTITLE 1,Visualisation of stores locations inside Berlin
 berlin_map.crs = 4326
-ax = berlin_map.plot(color = 'lightgreen' , figsize=(10,15))
+ax = berlin_map.plot(color = 'lightgreen' , figsize=(20,20))
 ax.axis("off")
 ax.set_title('Visualisation of stores locations inside Berlin')
 
 stores_geopandas_df.plot(ax=ax , cmap='jet' , edgecolor='black' , column='store_name')
+
+# COMMAND ----------
+
+gps_geopandas_df.memory_usage(deep=True)
+
+# COMMAND ----------
+
+gps_geopandas_df.dtypes
+
+# COMMAND ----------
+
+gps_geopandas_df.memory_usage(deep=True)
+
+# COMMAND ----------
+
+gps_geopandas_df.dtypes
