@@ -45,29 +45,28 @@ After applying spatial join between the gps signals dataframes and the stores da
 
 # The trend of unique visits for all places : 
 
-Restaurants and fastfood has in general more visitors per day than other supermarkets or retail companies , we can see here that mackdonalds had much more unique visitors per day than Aldi for example , this also can be explained buy the date wich might reflect some kind of discount , also through this we get a consumer bhaviour in commun between these different visitor which can be used further by recommending to each other something that a different visitor is used to buy or consume . 
+In the first visualization we see the sum of unique visitors on all stores for each day , we can detect some anomalies where we hace very low number of unique visitors to all stores compared to the rest of the days , on the following dates : <br/>
+- 2021-01-01  corresponds to Friday and the first day of the new year <br/>
+- 2021-01-03 corresponds to Sunday   <br/>
+- 2021-01-10  corresponds to Sunday  <br/>
+- 2021-01-17  corresponds to Sunday <br/>
 
+So on Sundays the we have the lowest number of visitors or consumers to the stores .
 
-![bar_chart_uniquevisits](https://user-images.githubusercontent.com/17991782/159183689-49205fe6-a3b8-44a2-9e4d-9022a3b83247.png)
+![uniqvisit_All](https://user-images.githubusercontent.com/17991782/159584401-b30eb670-1b4c-4b0e-929e-b73bc5fde517.png)
 
+In the Second visualization , where we have a more detailed view , we see that on the mentioned dates ( 2021-01-01/03/10/17 ) , fast food business (like mcdonalds and Burger king) are an exception to the rule and keep having unique visitors close to their average unique visitors number unlike hypermarket and retail business ( like Aldi , Kaufland , Rewe ) .
 
-
-
-![pie_chart](https://user-images.githubusercontent.com/17991782/159183882-4bcd40be-6be3-47f2-b1f7-3b791dcd7036.png)
+![uniqvisit_each](https://user-images.githubusercontent.com/17991782/159584411-63e1d20b-5960-4c4e-b4ba-4ecda4017a20.png)
 
 
 
 # GPS data visualization : 
 
-The vizualisation of all the gps signals looks like a polygone or diamant shape and very concentrated in the middle ( which totally intersects with the center of Berlin) , which means that the devices locations are not random so we can predict the various locations for consumer behaviour or the best places to open new stors and get more people to come .<br/>
+The vizualisation or distribution of all the gps signals looks like a polygone , which means that the devices locations are not random so we can predict the various locations for consumer behaviour or the best places to open new stors and get more people to come .<br/>
 
-In the second photo we see that the gps signals are not totaly contained in Berlin , and that various places in Berlin have not been visited by the devices holders .
+![Gps_vizualization](https://user-images.githubusercontent.com/17991782/159584439-79a9dc5a-baaa-44a2-9a0b-682ea89afa2c.png)
 
-
-![Gps_positions_Visualization](https://user-images.githubusercontent.com/17991782/159183907-48dfefac-b4c9-499b-a588-26cf7bc65daf.png)
-
-
-![Berlin_map_Gps_positions_Visualization](https://user-images.githubusercontent.com/17991782/159184029-f1560412-774f-45ce-9214-b76228b3c6ef.png)
 
 
 # Stores locations visualization : 
@@ -76,9 +75,7 @@ At this part we observe the locations of the stores but more specifically in Ber
 
 
 
-
-
-![stores_in_Berlin](https://user-images.githubusercontent.com/17991782/159184046-d4df9ba9-1d54-4e3f-a65b-b64393ff3cce.png)
+![stores_in_Berlin_Big](https://user-images.githubusercontent.com/17991782/159584472-025bdeca-3568-436f-b4fd-22a3efcbe29d.png)
 
 
 
