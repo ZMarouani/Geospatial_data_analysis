@@ -2,7 +2,7 @@
 
 # Project structure :
 
-In this project i used geopandas with python to analyse various files containing informations about gps positions and stores positions in order to analyse the costumers behaviour .<br/>
+In this project i created two solutions the firstis with geopandas with python and the second with pyspark , to analyse various files containing informations about gps positions and stores positions in order to analyse the costumers behaviour .<br/>
 Coding this project was possible through the usage of databricks service hosted on Aws cloud platform running through  Ec2 instances as the cluster, also using Aws S3 cloud object storage to upload our training data , sample data and finally store our results ( you will also find a csv copy of the results in this repo ) .<br/>
 The s3 bucket was mounted to the databricks dbfs (Databricks File System) using Aws instance profile , which will allow us to explore it's paths and files (using databricks dbutils) as if the s3 bucket was a local file system . <br/>
 The python notebooks were exported on three different formats (ipynb , python source code and HTML) , the three different formats were uploaded to this github repoistory .<br/>
